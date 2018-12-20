@@ -1,0 +1,19 @@
+package com.dakshpokar.c1;
+import java.util.*;  
+
+public class SJFComparator implements Comparator{
+	public int compare(Object p1,Object p2){  
+		Process s1=(Process)o1;  
+		Process s2=(Process)o2;  
+
+		if(p1.getExecTime() < p2.getExecTime()){
+			return -1;
+		}
+		else if(p1.getExecTime() > p2.getExecTime()){
+			return 1;
+		}
+		else	{
+			return 0;
+		}
+	}  
+}  

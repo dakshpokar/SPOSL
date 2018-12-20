@@ -1,0 +1,16 @@
+package com.dakshpokar.c1;
+import java.util.*;  
+
+public class SJFComparator implements Comparator{
+	public int compare(Object o1,Object o2){  
+		Process s1=(Process)o1;  
+		Process s2=(Process)o2;  
+
+		if(s1.age==s2.age)  
+			return 0;  
+		else if(s1.age>s2.age)  
+			return 1;  
+		else  
+			return -1;  
+	}  
+}  
