@@ -75,8 +75,8 @@ public class SJF {
 		while(iterator.hasNext()){
 			Process p = (Process) iterator.next();
 			System.out.println(p.getName() + "\t" + p.getArrTime() + "\t" + p.getExecTime() + "\t" + servTime + "\t");
-			wait_time.add((servTime + p.getExecTime() - servTime));
 			servTime = servTime + p.getExecTime();
+			wait_time.add((servTime - p.getArrTime()));
 
 		}
 		iterator = wait_time.iterator();

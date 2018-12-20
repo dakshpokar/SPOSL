@@ -75,17 +75,14 @@ public class SJF {
 		while(iterator.hasNext()){
 			Process p = (Process) iterator.next();
 			System.out.println(p.getName() + "\t" + p.getArrTime() + "\t" + p.getExecTime() + "\t" + servTime + "\t");
-			wait_time.add((servTime + p.getExecTime() - servTime));
+			wait_time.add((servTime - p.getArrTime()));
 			servTime = servTime + p.getExecTime();
-
 		}
 		iterator = wait_time.iterator();
 		Double avg_wait_time = 0.0;
 		while(iterator.hasNext()){
-			System.out.println(avg_wait_time);
 			avg_wait_time += (Double)iterator.next();
 		}
-		avg_wait_time = avg_wait_time / wait_time.size();
 		System.out.println("Average Wait Time" + avg_wait_time);
 		System.exit(0);
 	}
