@@ -1,0 +1,8 @@
+package com.dakshpokar.c1;
+
+import java.util.ArrayList;
+
+public class ProcessList {
+	ArrayList<Process> processes = new ArrayList<>();
+	
+}

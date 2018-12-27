@@ -6,6 +6,7 @@ public class Process{
 	String name;
 	Double arrTime;
 	Double execTime;
+	Integer priority;
 	public Process() {
 	}
 	public Double getArrTime() {
@@ -25,5 +26,11 @@ public class Process{
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public Integer getPriority() {
+		return priority;
+	}
+	public void setPriority(Integer priority) {
+		this.priority = priority;
 	}
 }

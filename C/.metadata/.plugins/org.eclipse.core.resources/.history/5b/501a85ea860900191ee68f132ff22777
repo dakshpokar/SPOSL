@@ -1,0 +1,10 @@
+package com.dakshpokar.c1;
+
+import java.util.ArrayList;
+
+public class ProcessList {
+	ArrayList<Process> processes = new ArrayList<>();
+	public ProcessList(ArrayList<Process> processes) {
+		this.processes = processes;
+	}
+}
