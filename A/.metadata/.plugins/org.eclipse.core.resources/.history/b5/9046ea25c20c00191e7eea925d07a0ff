@@ -1,0 +1,7 @@
+package com.assembler.p1;
+
+public class OpcodeLine {
+	private String mCode;
+	private String clas;
+	private String mnemonic;
+}

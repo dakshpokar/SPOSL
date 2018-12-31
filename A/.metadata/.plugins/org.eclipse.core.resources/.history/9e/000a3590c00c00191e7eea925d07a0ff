@@ -1,0 +1,63 @@
+package com.assembler.p1;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+public class PassOne {
+	public static Scanner scan;
+	private Integer LC;
+	public String fileName;
+	private Integer startAddress;
+	private ArrayList<SymbolLine> symbols = new ArrayList<SymbolLine>();
+	
+	public static void main(String[] args) {
+		scan = new Scanner(System.in);
+		PassOne p1 = new PassOne();
+		System.out.println("Hello!");
+		//String fileName = scan.next();
+		String fileName = "program.asm";
+		p1.getFileName(fileName);
+		p1.readFile();
+	}
+	public void getFileName(String fileName){
+		this.fileName = fileName;
+	}
+	public void readFile(){
+		BufferedReader br = null;
+		String tempS = "";
+		try {
+		    String s;
+		    br = new BufferedReader(new FileReader(this.fileName));
+		    while ((s = br.readLine()) != null) {
+		        if(s.charAt(0) == '\t'){
+		        	if(s.contains("START")){
+		        		for(int i = 7; i<s.length();i++){
+		        			tempS += s.charAt(i);
+		    		    }
+		        		this.startAddress = Integer.valueOf(tempS);
+		        		tempS = "";
+		        		continue;
+		        	}
+		        }
+		        else{
+		        	int i = 0;
+		        	while(s.charAt(i)!='\t'){
+		        		tempS += s.charAt(i);
+		        		i++;
+		        	}
+		        	SymbolLine nS = new SymbolLine();
+		        	nS.setSymbol(tempS);
+
+		        }
+		    }
+		    
+		    
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+	}	
+}

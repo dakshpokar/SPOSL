@@ -1,0 +1,46 @@
+package com.assembler.p1;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class PassOne {
+	public static Scanner scan;
+	private Integer LC;
+	public String fileName;
+	private Integer startAddress;
+	
+	public static void main(String[] args) {
+		scan = new Scanner(System.in);
+		PassOne p1 = new PassOne();
+		System.out.println("Hello!");
+		String fileName = scan.next();
+		p1.getFileName(fileName);
+		p1.readFile();
+	}
+	public void getFileName(String fileName){
+		this.fileName = fileName;
+	}
+	public void readFile(){
+		BufferedReader br = null;
+		String tempS = null;
+		try {
+		    String s;
+		    br = new BufferedReader(new FileReader(this.fileName));
+		    while ((s = br.readLine()) != null) {
+		        if(s.charAt(0) == '\t'){
+		        	if(s.contains("START")){
+		        		for(int i = 7; i<s.length();i++){
+		        			tempS += s.charAt(i);
+		    		    }
+		        	}
+		        }
+		    }
+		    
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+	}
+	
+}

@@ -1,0 +1,6 @@
+package com.assembler.p1;
+
+public class PassOne {
+	private Scanner scan;
+	
+}

@@ -1,0 +1,8 @@
+package com.assembler.p1;
+
+import java.util.Scanner;
+
+public class PassOne {
+	public Scanner scan;
+	
+}
