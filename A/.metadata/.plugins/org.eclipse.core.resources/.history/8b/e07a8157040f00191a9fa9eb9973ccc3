@@ -1,0 +1,7 @@
+package com.assembler.p1;
+
+public class IOLine {
+	private String instruction;
+	private String operand;
+	
+}

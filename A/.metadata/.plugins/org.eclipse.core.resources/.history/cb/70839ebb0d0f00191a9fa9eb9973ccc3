@@ -1,0 +1,26 @@
+package com.assembler.p1;
+
+public class IOLine {
+	private Integer lineNumber;
+	private String instruction;
+	private String operand;
+	private String address;
+	public String getInstruction() {
+		return instruction;
+	}
+	public Integer getLineNumber() {
+		return lineNumber;
+	}
+	public void setLineNumber(Integer lineNumber) {
+		this.lineNumber = lineNumber;
+	}
+	public String getOperand() {
+		return operand;
+	}
+	public void setInstruction(String instruction) {
+		this.instruction = instruction;
+	}
+	public void setOperand(String operand) {
+		this.operand = operand;
+	}
+}

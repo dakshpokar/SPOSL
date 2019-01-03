@@ -13,8 +13,7 @@ public class PassOne {
 	public String fileName;
 	private Integer startAddress;
 	private ArrayList<SymbolLine> symbols = new ArrayList<SymbolLine>();
-	private ArrayList<String> instructions = new ArrayList<String>();
-	private ArrayList<String> operand = new ArrayList<String>();
+	private ArrayList<IOLine> io = new ArrayList<IOLine>();
 	public static void main(String[] args) {
 		scan = new Scanner(System.in);
 		PassOne p1 = new PassOne();
@@ -30,51 +29,61 @@ public class PassOne {
 	public void readFile(){
 		BufferedReader br = null;
 		String tempS = "";
+		Integer LC = 0;
+		Integer lineCount = 0;
 		try {
 		    String s;
 		    br = new BufferedReader(new FileReader(this.fileName));
 		    while ((s = br.readLine()) != null) {
+        		lineCount++;
+        		System.out.print(LC + " - ");
 		    	if(!s.isEmpty()){
+		    		IOLine io_line = new IOLine();
+		          	SymbolLine sl = new SymbolLine();
+
 		        	if(s.contains("START")){
 		        		String[] str = s.split("\t", -1);
 		        		this.startAddress = Integer.valueOf(str[2]);
+		        		LC = this.startAddress;
 		        		continue;
 		        	}
-		        	System.out.println(s);
-		        	String[] str = s.split("\t", -1);
 		        	
-		        	System.out.println(str[0]);
-		        	if(!str[0].equals("\t")){
-			        	SymbolLine sl = new SymbolLine();
+		        	String[] str = s.split("\t", -1);
+		        	if(!str[0].equals("")){
+		        		System.out.print(str[0] + " - ");
 		        		sl.setSymbol(str[0]);
+		        		sl.setLineNumber(lineCount);
+		        		sl.setAddress(LC);
 		        		symbols.add(sl);
+			        }
+		        	if(!str[1].equals("")){
+		        		System.out.print(str[1] + " - ");
+		        		io_line.setInstruction(str[1]);		        		
 		        	}
-		        	if(str[1] != null && str[2] !=null){
-		        		instructions.add(str[1]);
-		        		if(str[2] != null && !str[2].equals("\n")){
-		        			operand.add(str[2]);
-		        		}
+		        	if(str.length>2){
+		        		System.out.print(str[2] + "\n");
+			        	if(!str[2].equals("")){
+			        		io_line.setOperand(str[2]);
+			        	}
 		        	}
-			      
+		        	
+		        	io_line.setLineNumber(lineCount);
+		        	io.add(io_line);		        	
 		    	}
 		    }    
 		
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
-		for(SymbolLine x:symbols){
-			System.out.println(x.getSymbol());
+		System.out.println("\n########Instructions########");
+		for(SymbolLine x : symbols){
+			System.out.print(x.getLineNumber() + " - ");
+			System.out.print(x.getSymbol() + " - ");
+			System.out.println("****************************");
 		}
-		System.out.println(instructions.size());
-		System.out.println(operand.size());
-		for(int i = 0; i<instructions.size(); i++){
-			System.out.println(instructions.get(i));
-			System.out.println("*************************************");
-		}
-		for(int i = 0; i<operand.size();i++){
-			System.out.println(operand.get(i));
-			System.out.println("*************************************");
-		}
+		
+		
+	
 	}	
 	
 }

@@ -1,0 +1,7 @@
+package com.assembler.p1;
+
+public class SymbolTable {
+	private SymbolLine s;
+	private Integer address;
+	private Integer length;
+}

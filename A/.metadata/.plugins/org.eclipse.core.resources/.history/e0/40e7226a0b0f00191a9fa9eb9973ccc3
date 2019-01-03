@@ -1,0 +1,25 @@
+package com.assembler.p1;
+
+public class SymbolTable {
+	private SymbolLine s;
+	private Integer address;
+	private Integer length;
+	public void setAddress(Integer address) {
+		this.address = address;
+	}
+	public void setLength(Integer length) {
+		this.length = length;
+	}
+	public void setS(SymbolLine s) {
+		this.s = s;
+	}
+	public Integer getAddress() {
+		return address;
+	}
+	public Integer getLength() {
+		return length;
+	}
+	public SymbolLine getS() {
+		return s;
+	}
+}
