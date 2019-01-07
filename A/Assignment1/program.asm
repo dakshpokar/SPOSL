@@ -4,11 +4,6 @@
 LOOP	MOVER	AREG, A
 	MOVER	CREG, B
 	ADD	CREG, ='1'
-
-
-
-
-
 	BC	ANY, NEXT
 	LTORG
 		='5'
