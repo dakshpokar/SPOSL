@@ -4,10 +4,16 @@
 LOOP	MOVER	AREG, A
 	MOVER	CREG, B
 	ADD	CREG, ='1'
+
+
+
+
+
 	BC	ANY, NEXT
 	LTORG
 		='5'
 		='1'
+
 NEXT	SUB	AREG, ='1'
 	BC	LT, BACK
 LAST	STOP
