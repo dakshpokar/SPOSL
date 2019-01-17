@@ -1,0 +1,8 @@
+package com.assembler.p2;
+
+public class PassTwo {
+	Scanner scan;
+	public static void main(String[] args) {
+		
+	}
+}

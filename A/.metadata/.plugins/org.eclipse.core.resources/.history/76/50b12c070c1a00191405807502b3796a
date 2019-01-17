@@ -194,6 +194,12 @@ public class PassOne {
 		}
 		System.out.println("##########INC############");	
 		inter.close();
+		/*for(int i = 0;i<iCode.size();i++){
+			ForIC x = iCode.get(i);
+			System.out.print("(" + x.getStatementType() + ", " + x.getCode() + ")  (");
+			x = iSLC.get(i);
+			System.out.print(x.getCode() + ", " + x.getStatementType() + ")\n");
+		}*/
         Iterator hmIterator = symbols.entrySet().iterator();
 	    BufferedWriter writer = new BufferedWriter(new FileWriter("symtab"));
 

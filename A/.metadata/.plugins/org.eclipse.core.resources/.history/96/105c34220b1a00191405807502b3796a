@@ -18,6 +18,7 @@ public class PassOne {
 	public String fileName;
 	private Integer startAddress;
 	private Map<String, SymbolLine> symbols = new HashMap<String, SymbolLine>();
+
 	private ArrayList<IOLine> io = new ArrayList<IOLine>();
 	private ArrayList<LitLine> littab = new ArrayList<LitLine>();
 	private ArrayList<String> pooltab = new ArrayList<String>();
@@ -25,8 +26,9 @@ public class PassOne {
 	public static void main(String[] args) {
 		scan = new Scanner(System.in);
 		PassOne p1 = new PassOne();
-		System.out.println("Enter the name of file with extension: ");
+		System.out.println("Hello!");
 		String fileName = scan.next();
+		//String fileName = "program.asm";
 		p1.getFileName(fileName);
 		try {
 			p1.readFile();
@@ -127,7 +129,9 @@ public class PassOne {
 		        				label = str[2];
 		        			}
 	        				oldLC = LC;
-	        				SymbolLine x = null;	        				
+	        				SymbolLine x = null;
+	        				System.out.println(number);
+	        				
 	        				x = symbols.get(label);
 	        				oldLC = LC ;
 	        				if(number == null){
@@ -194,6 +198,12 @@ public class PassOne {
 		}
 		System.out.println("##########INC############");	
 		inter.close();
+		/*for(int i = 0;i<iCode.size();i++){
+			ForIC x = iCode.get(i);
+			System.out.print("(" + x.getStatementType() + ", " + x.getCode() + ")  (");
+			x = iSLC.get(i);
+			System.out.print(x.getCode() + ", " + x.getStatementType() + ")\n");
+		}*/
         Iterator hmIterator = symbols.entrySet().iterator();
 	    BufferedWriter writer = new BufferedWriter(new FileWriter("symtab"));
 

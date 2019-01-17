@@ -1,0 +1,7 @@
+package com.assembler.p2;
+
+public class PassTwo {
+	public static void main(String[] args) {
+		
+	}
+}
