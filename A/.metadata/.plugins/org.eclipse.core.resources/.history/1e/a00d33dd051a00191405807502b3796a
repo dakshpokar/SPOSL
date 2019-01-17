@@ -1,0 +1,201 @@
+package com.assembler.p1;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Scanner;
+
+
+public class PassOne {
+	public static Scanner scan;
+	private Integer LC;
+	public String fileName;
+	private Integer startAddress;
+	//private ArrayList<SymbolLine> symbols = new ArrayList<SymbolLine>();
+	private Map<String, SymbolLine> symbols = new HashMap<String, SymbolLine>();
+
+	private ArrayList<IOLine> io = new ArrayList<IOLine>();
+	private ArrayList<ForIC> iCode = new ArrayList<ForIC>();
+	private ArrayList<ForIC> iSLC = new ArrayList<ForIC>();
+	//private Map<String, Integer> littab = new HashMap<String, Integer>();
+	private ArrayList<LitLine> littab = new ArrayList<LitLine>();
+	private ArrayList<String> pooltab = new ArrayList<String>();
+
+	public static void main(String[] args) {
+		scan = new Scanner(System.in);
+		PassOne p1 = new PassOne();
+		System.out.println("Hello!");
+		//String fileName = scan.next();
+		String fileName = "program.asm";
+		p1.getFileName(fileName);
+		try {
+			p1.readFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void getFileName(String fileName){
+		this.fileName = fileName;
+	}
+	public void readFile() throws IOException{
+		MnemonicTable m = new MnemonicTable();
+		BufferedReader br = null;
+		String tempS = "";
+		Integer lit_count = 1;
+		Boolean ltorg = false;
+	    BufferedWriter inter = new BufferedWriter(new FileWriter("intercode"));
+	    ForIC ic = null;
+		try {
+		    String s;
+		    br = new BufferedReader(new FileReader(this.fileName));
+		    
+		    while ((s = br.readLine()) != null) {
+		    	inter.write("\n");
+
+		    	System.out.println(LC + " - " + s);
+		    	if(!s.isEmpty()){
+			    	if(!s.contains("START") && !s.contains("LTORG") && !s.contains("END")){
+			    		inter.write(LC + "\t");
+			    	}
+        			String[] str = s.split("\t", -1);
+        			if(s.contains("START")){
+		        		this.startAddress = Integer.valueOf(str[2]);
+		        		LC = this.startAddress;
+		        		ic = m.getMnemonic("START");
+		        		inter.write("\t(" + ic.getStatementType() + ", " + ic.getCode() + ")\t");
+		        		inter.write("(C, " + String.valueOf(this.startAddress) + ")");
+		        		iSLC.add(new ForIC("C", String.valueOf(this.startAddress)));
+		        		continue;
+		        	}
+        			if(s.contains("LTORG") || s.contains("END")){
+    					pooltab.add("#" + lit_count.toString() + "\n");
+        				ltorg = true;
+        				continue;
+        			}
+        			
+        			if(s.contains("ORIGIN")){
+        				String label = null;
+        				Integer number = 0;
+        				if(str[2].contains("+") || str[2].contains("-"))
+        				{
+        					String[] x = null;
+        					x = str[2].split("\\+");
+        					label = x[0];
+        					number = Integer.parseInt(x[1]);
+        				}
+        				SymbolLine x = null;
+        				x = symbols.get(label);
+		        		LC = x.getAddress() + number;
+		        		iCode.add(m.getMnemonic(str[1]));
+		        		iSLC.add(new ForIC("C", String.valueOf(this.startAddress)));
+		        		continue;
+        			}
+        			
+        			IOLine io_line = new IOLine();
+		          	SymbolLine sl = new SymbolLine();
+
+        			if(!str[0].equals("")){
+        				if(ltorg == true){
+        					ltorg = false;
+        				}
+	        			Integer oldLC = null;
+		        		if(s.contains("EQU")){
+	        				oldLC = LC;
+		        			String label = null;
+	        				SymbolLine x = null;
+	        				label = str[2];
+	        				x = symbols.get(label);
+	        				oldLC = LC ;
+	        				LC = x.getAddress();
+	        			}
+		        		sl.setAddress(LC);
+		        		sl.setLength(1);
+		        		symbols.put(str[0], sl);
+		        		if(s.contains("EQU")){
+		        			LC = oldLC;
+		        		}
+
+        			}
+        			if(ltorg == true){
+        				littab.add(new LitLine(str[2], LC));
+        				lit_count += 1;
+        			}
+    				if(!s.contains("LTORG") && !s.contains("EQU") && !s.contains("END")){
+    					LC = LC + 1;
+    				}
+		        	if(!str[1].equals("")){
+		        		iCode.add(m.getMnemonic(str[1]));
+		        		io_line.setInstruction(str[1]);
+			        	ic = m.getMnemonic(str[1]);
+			        	inter.write("\t(" + ic.getStatementType() + ", " + ic.getCode() + ")\t");
+		        	}
+		        	if(str.length>2){
+			        	if(!str[2].equals("")){
+			        		io_line.setOperand(str[2]);
+			        		if(ltorg==true){
+		        				inter.write("(L, "+str[2] + ")");
+			        		}else{
+			        			if(!s.contains("DS") && !s.contains("DC"))
+			        			{
+			        				inter.write(str[2]);
+			        			}
+			        		}
+			        	}
+			        	
+		        	}
+		        	io.add(io_line);
+
+        		}
+		    	else{
+		    		LC = LC + 1;
+		    	}
+		    	
+		    }    
+		
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		System.out.println("##########INC############");	
+		inter.close();
+		/*for(int i = 0;i<iCode.size();i++){
+			ForIC x = iCode.get(i);
+			System.out.print("(" + x.getStatementType() + ", " + x.getCode() + ")  (");
+			x = iSLC.get(i);
+			System.out.print(x.getCode() + ", " + x.getStatementType() + ")\n");
+		}*/
+        Iterator hmIterator = symbols.entrySet().iterator();
+	    BufferedWriter writer = new BufferedWriter(new FileWriter("symtab"));
+
+		while (hmIterator.hasNext()) { 
+            Map.Entry mapElement = (Map.Entry)hmIterator.next(); 
+            SymbolLine sl = ((SymbolLine)mapElement.getValue()); 
+            System.out.println(mapElement.getKey() + " : " + sl.getAddress()); 
+            writer.write(mapElement.getKey() + "\t" + sl.getAddress().toString() + "\t" + sl.getLength().toString() + "\n");
+        } 
+		writer.close();
+		
+        hmIterator = littab.iterator();
+	    writer = new BufferedWriter(new FileWriter("littab"));
+	    Integer k = 1;
+		while (hmIterator.hasNext()) { 
+			LitLine l = (LitLine)hmIterator.next();
+            writer.write(k.toString() + "\t" + l.getLiteral() + "\t" + l.getAddress().toString() + "\n");
+            k++;
+        } 
+		writer.close();
+	    
+	    writer = new BufferedWriter(new FileWriter("pooltab"));
+	    hmIterator = pooltab.iterator();
+	    while(hmIterator.hasNext()){
+	    	writer.write((String)hmIterator.next());
+	    }
+		writer.close();
+	}	
+	
+}

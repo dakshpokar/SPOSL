@@ -21,8 +21,6 @@ public class PassOne {
 	private Map<String, SymbolLine> symbols = new HashMap<String, SymbolLine>();
 
 	private ArrayList<IOLine> io = new ArrayList<IOLine>();
-	private ArrayList<ForIC> iCode = new ArrayList<ForIC>();
-	private ArrayList<ForIC> iSLC = new ArrayList<ForIC>();
 	//private Map<String, Integer> littab = new HashMap<String, Integer>();
 	private ArrayList<LitLine> littab = new ArrayList<LitLine>();
 	private ArrayList<String> pooltab = new ArrayList<String>();
@@ -31,8 +29,8 @@ public class PassOne {
 		scan = new Scanner(System.in);
 		PassOne p1 = new PassOne();
 		System.out.println("Hello!");
-		//String fileName = scan.next();
-		String fileName = "program.asm";
+		String fileName = scan.next();
+		//String fileName = "program.asm";
 		p1.getFileName(fileName);
 		try {
 			p1.readFile();
@@ -49,41 +47,59 @@ public class PassOne {
 		String tempS = "";
 		Integer lit_count = 1;
 		Boolean ltorg = false;
+	    BufferedWriter inter = new BufferedWriter(new FileWriter("intercode"));
+	    ForIC ic = null;
 		try {
 		    String s;
 		    br = new BufferedReader(new FileReader(this.fileName));
+		    
 		    while ((s = br.readLine()) != null) {
+		    	System.out.println(LC + " - " + s);
 		    	if(!s.isEmpty()){
-		    	
+			    	if(!s.contains("EQU") && !s.contains("ORIGIN") && !s.contains("START") && !s.contains("LTORG") && !s.contains("END")){
+			    		inter.write("\n" + LC + "\t");
+			    	}
         			String[] str = s.split("\t", -1);
         			if(s.contains("START")){
 		        		this.startAddress = Integer.valueOf(str[2]);
 		        		LC = this.startAddress;
-		        		iCode.add(m.getMnemonic("START"));
-		        		iSLC.add(new ForIC("C", String.valueOf(this.startAddress)));
+		        		ic = m.getMnemonic("START");
+		        		inter.write("\t(" + ic.getStatementType() + ", " + ic.getCode() + ")\t");
+		        		inter.write("(C, " + String.valueOf(this.startAddress) + ")");
 		        		continue;
-		        		
 		        	}
         			if(s.contains("LTORG") || s.contains("END")){
     					pooltab.add("#" + lit_count.toString() + "\n");
         				ltorg = true;
         				continue;
         			}
+        			
         			if(s.contains("ORIGIN")){
         				String label = null;
         				Integer number = 0;
-        				if(str[2].contains("+") || str[2].contains("-"))
+        				if(str[2].contains("+"))
         				{
         					String[] x = null;
         					x = str[2].split("\\+");
         					label = x[0];
         					number = Integer.parseInt(x[1]);
         				}
+	        			else if(str[2].contains("-"))
+        				{
+        					String[] x = null;
+        					x = str[2].split("\\-");
+        					label = x[0];
+        					number = -Integer.parseInt(x[1]);
+        				}
+	        			else {
+	        				label = str[2];
+	        			}
         				SymbolLine x = null;
         				x = symbols.get(label);
 		        		LC = x.getAddress() + number;
-		        		iCode.add(m.getMnemonic(str[1]));
-		        		iSLC.add(new ForIC("C", String.valueOf(this.startAddress)));
+		        		ic = m.getMnemonic("ORIGIN");
+		        		inter.write("\n\t(" + ic.getStatementType() + ", " + ic.getCode() + ")\t");
+		        		inter.write(str[2]);	
 		        		continue;
         			}
         			
@@ -95,19 +111,43 @@ public class PassOne {
         					ltorg = false;
         				}
 	        			Integer oldLC = null;
-		        		if(s.contains("EQU")){
-	        				oldLC = LC;
+		        		if(s.contains("EQU") || s.contains("PRINT")){
 		        			String label = null;
+		        			Integer number = null;
+		        			if(str[2].contains("+"))
+	        				{
+	        					String[] x = null;
+	        					x = str[2].split("\\+");
+	        					label = x[0];
+	        					number = Integer.parseInt(x[1]);
+	        				}
+		        			else if(str[2].contains("-"))
+	        				{
+	        					String[] x = null;
+	        					x = str[2].split("\\-");
+	        					label = x[0];
+	        					number = -Integer.parseInt(x[1]);
+	        				}
+		        			else {
+		        				label = str[2];
+		        			}
+	        				oldLC = LC;
 	        				SymbolLine x = null;
-	        				label = str[2];
+	        				System.out.println(number);
+	        				
 	        				x = symbols.get(label);
 	        				oldLC = LC ;
-	        				LC = x.getAddress();
+	        				if(number == null){
+	        					LC = x.getAddress();
+	        				}
+	        				else{
+	        					LC = x.getAddress() + number;
+	        				}
 	        			}
 		        		sl.setAddress(LC);
 		        		sl.setLength(1);
 		        		symbols.put(str[0], sl);
-		        		if(s.contains("EQU")){
+		        		if(s.contains("EQU") || s.contains("PRINT")){
 		        			LC = oldLC;
 		        		}
 
@@ -119,27 +159,48 @@ public class PassOne {
     				if(!s.contains("LTORG") && !s.contains("EQU") && !s.contains("END")){
     					LC = LC + 1;
     				}
+
 		        	if(!str[1].equals("")){
-		        		iCode.add(m.getMnemonic(str[1]));
 		        		io_line.setInstruction(str[1]);
+			        	ic = m.getMnemonic(str[1]);
+			        	if(s.contains("EQU")){
+			        		inter.write("\n");
+			        	}
+			        	inter.write("\t(" + ic.getStatementType() + ", " + ic.getCode() + ")\t");
 		        	}
 		        	if(str.length>2){
 			        	if(!str[2].equals("")){
 			        		io_line.setOperand(str[2]);
+			        		if(ltorg==true){
+			        			inter.write("\t(DL, 05)\t");
+		        				inter.write("(L, "+str[2].substring(1, str[2].length()) + ")");
+			        		}else{
+			        			if(s.contains("DS") || s.contains("DC"))
+			        			{
+			        				inter.write("\t(C, " + str[2] + ")");
+			        			}
+			        			else{
+			        				inter.write(str[2]);
+			        			}
+			        		}
 			        	}
+			        	
 		        	}
 		        	io.add(io_line);
+
         		}
 		    	else{
 		    		LC = LC + 1;
+			    	inter.write("\n");
 		    	}
+		    	
 		    }    
 		
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
 		System.out.println("##########INC############");	
-		
+		inter.close();
 		/*for(int i = 0;i<iCode.size();i++){
 			ForIC x = iCode.get(i);
 			System.out.print("(" + x.getStatementType() + ", " + x.getCode() + ")  (");
