@@ -1,0 +1,46 @@
+package com.assembler.p2;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+import com.assembler.p1.MnemonicTable;
+import com.assembler.p1.SymbolLine;
+
+public class PassTwo {
+	private static Scanner scan;
+	private Map<String, SymbolLine> symtab = new HashMap<String, SymbolLine>();
+	public static void main(String[] args) {
+		scan = new Scanner(System.in);
+		System.out.print("Enter the name of intermediate code file: ");
+		String icode_file = scan.next();
+		PassTwo pass2 = new PassTwo();
+		try {
+			pass2.readFile(icode_file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void readFile(String fileName) throws IOException{
+		BufferedReader br = new BufferedReader(new FileReader(fileName));
+		readSymbolTable();
+		MnemonicTable mt = new MnemonicTable();
+		String line;
+		while((line=br.readLine()) != null){
+			System.out.println(line);
+			
+		}
+	}
+	public void readSymbolTable() throws FileNotFoundException{
+		BufferedReader br = new BufferedReader(new FileReader("symtab"));
+		
+	}
+}

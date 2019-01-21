@@ -7,7 +7,7 @@ import java.util.Map;
 public class MnemonicTable {
 	private Map<String, ForIC> map = new HashMap<String, ForIC>();
 	
-	MnemonicTable(){
+	public MnemonicTable(){
 		map.put("STOP", new ForIC("00", "IS"));
 		map.put("ADD", new ForIC("01", "IS"));
 		map.put("SUB", new ForIC("02", "IS"));

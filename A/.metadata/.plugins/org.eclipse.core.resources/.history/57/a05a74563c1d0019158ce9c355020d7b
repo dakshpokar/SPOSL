@@ -1,0 +1,17 @@
+package com.assembler.p2;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class OperandTable {
+	private Map<String, String> map = new HashMap<String, String>();
+	
+	OperandTable(){
+		
+	}
+	public String getOperand(){
+		LitLine l;
+		return null;
+		
+	}
+}

@@ -1,25 +1,25 @@
 	(AD, 01)	(C, 200)
-200		(IS, 04)	AREG, ='5'
-201		(IS, 05)	AREG, A
-202		(IS, 04)	AREG, A
-203		(IS, 04)	CREG, B
-204		(IS, 01)	CREG, ='1'
+200	(IS, 04)	AREG, ='5'
+201	(IS, 05)	AREG, A
+202	(IS, 04)	AREG, A
+203	(IS, 04)	CREG, B
+204	(IS, 01)	CREG, ='1'
 
 
 
 
 
-210		(IS, 07)	ANY, NEXT
-211		(DL, 05)	(L, '5')
-212		(DL, 05)	(L, '1')
+210	(IS, 07)	ANY, NEXT
+211	(DL, 05)	(L, '5')
+212	(DL, 05)	(L, '1')
 
-214		(IS, 02)	AREG, ='1'
-215		(IS, 07)	LT, BACK
-216		(IS, 00)	
+214	(IS, 02)	AREG, ='1'
+215	(IS, 07)	LT, BACK
+216	(IS, 00)	
 	(AD, 03)	LOOP+2
-204		(IS, 03)	CREG, B
+204	(IS, 03)	CREG, B
 	(AD, 03)	LAST+1
-217		(DL, 01)		(C, 1)
+217	(DL, 01)		(C, 1)
 	(AD, 04)	LOOP
-218		(DL, 01)		(C, 1)
-219		(DL, 05)	(L, '1')
+218	(DL, 01)		(C, 1)
+219	(DL, 05)	(L, '1')

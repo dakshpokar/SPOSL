@@ -52,7 +52,7 @@ public class PassOne {
 		    while ((s = br.readLine()) != null) {
 		    	if(!s.isEmpty()){
 			    	if(!s.contains("EQU") && !s.contains("ORIGIN") && !s.contains("START") && !s.contains("LTORG") && !s.contains("END")){
-			    		inter.write("\n" + LC + "\t");
+			    		inter.write("\n" + String.valueOf(LC));
 			    	}
         			String[] str = s.split("\t", -1);
         			if(s.contains("START")){

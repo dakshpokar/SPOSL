@@ -1,0 +1,19 @@
+package com.assembler.p2;
+
+import java.io.BufferedReader;
+import java.util.Scanner;
+
+public class PassTwo {
+	private static Scanner scan;
+	public static void main(String[] args) {
+		scan = new Scanner(System.in);
+		System.out.print("Enter the name of intermediate code file: ");
+		String icode_file = scan.next();
+		PassTwo pass2 = new PassTwo();
+		pass2.readFile(icode_file);
+	}
+	public void readFile(String fileName){
+		BufferedReader br = new BufferedReader(new FileReader(fileName));
+		
+	}
+}

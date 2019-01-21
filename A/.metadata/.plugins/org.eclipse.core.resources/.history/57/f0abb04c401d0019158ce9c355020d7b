@@ -1,0 +1,82 @@
+package com.assembler.p2;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+import com.assembler.p1.MnemonicTable;
+import com.assembler.p1.SymbolLine;
+import com.assembler.p1.LitLine;
+
+public class PassTwo {
+	private static Scanner scan;
+	private Map<String, SymbolLine> symtab = new HashMap<String, SymbolLine>();
+	private ArrayList<LitLine> littab = new ArrayList<LitLine>();
+
+	public static void main(String[] args) {
+		scan = new Scanner(System.in);
+		System.out.print("Enter the name of intermediate code file: ");
+		String icode_file = scan.next();
+		PassTwo pass2 = new PassTwo();
+		try {
+			pass2.readFile(icode_file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void readFile(String fileName) throws IOException{
+		BufferedReader br = new BufferedReader(new FileReader(fileName));
+		BufferedWriter wr = new BufferedWriter(new FileWriter("target"));
+		readSymbolTable();
+		readLiteralTable();
+		MnemonicTable mt = new MnemonicTable();
+		OperandTable ot = new OperandTable();
+		String line;
+		while((line=br.readLine()) != null){
+			String[] x = line.split("\t");
+			if(x.length > 2){
+				if(x[2].contains(",")){
+					String[] comma_split = x[2].split(",");
+					ot.getOperand(comma_split[1]);
+				}
+			}
+		}
+		wr.close();
+	}
+	public void readSymbolTable() throws IOException{
+		BufferedReader br = new BufferedReader(new FileReader("symtab"));
+		String line;
+		while((line = br.readLine())!=null){
+			String[] x = line.split("\t");
+			if(x.length > 2){
+				SymbolLine s = new SymbolLine();
+				s.setAddress(Integer.parseInt(x[1]));
+				s.setLength(Integer.parseInt(x[2]));
+				symtab.put(x[0], s);
+			}
+		}
+	}
+	public void readLiteralTable() throws NumberFormatException, IOException{
+		BufferedReader br = new BufferedReader(new FileReader("littab"));
+		String line;
+		while((line = br.readLine())!=null){
+			String[] x = line.split("\t");
+			if(x.length > 2){
+				LitLine e = new LitLine();
+				
+				littab.add(e);
+			}
+		}
+	}
+}
