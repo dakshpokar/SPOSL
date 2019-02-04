@@ -1,0 +1,29 @@
+package com.macro.p2;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+
+import com.macro.p1.PassOne;
+
+public class PassTwo {
+	public static void main(String[] args) throws IOException {
+		Scanner scan = new Scanner(System.in);
+		PassTwo p2 = new PassTwo();
+		p2.readFiles();
+	}
+	public void readFiles() throws IOException{
+		BufferedReader mdt = new BufferedReader(new FileReader("mdt"));
+	    BufferedReader mnt = new BufferedReader(new FileReader("mnt"));
+	    BufferedReader inter = new BufferedReader(new FileReader("intercode"));
+	    String s = null;
+	    
+	    //Reading MNT
+	    while ((s = mnt.readLine()) != null) {
+	    	
+	    }
+	    
+	}
+}

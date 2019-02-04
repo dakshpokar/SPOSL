@@ -36,6 +36,7 @@ public class PassOne {
 		boolean macro_started = false;
 		int pointer = 0;
 		int macro_num = 0;
+		int line = 1;
 	    while ((s = br.readLine()) != null) {
 	    	System.out.println(s);
 	    	if(s.contains("MACRO") || macro_line == true){
@@ -52,6 +53,7 @@ public class PassOne {
 	    			mnt.write(sp[pointer] + "\t");
 	    			String[] param = null;
 	    			if(sp.length <= 2){
+	    				mnt.write("0\t" + String.valueOf(line) + "\n");
 	    				continue;
 	    			}else{
 		    			if(sp[pointer+1].contains(", ")){
@@ -68,10 +70,10 @@ public class PassOne {
 	    				fvp.put(x, "#" + String.valueOf(pos));
 	    				pos++;
 	    			}
-	    			System.out.println("Param: ");
 	    			for(String x : param){
 	    				System.out.println(x + fvp.get(x));
 	    			}
+	    			mnt.write(pos-1+"\t"+String.valueOf(line)+"\n");
 	    			fvp_table.put(String.valueOf(macro_num), fvp);
 	    		}
 	    		else{
@@ -80,7 +82,8 @@ public class PassOne {
 	    		continue;
 	    	}
 	    	if(s.contains("MEND")){
-	    		mdt.write("MEND" + "\n");
+	    		mdt.write(String.valueOf(line) + ":" + "MEND" + "\n");
+	    		line++;
 	    		macro_started = false;
 	    		continue;
 	    	}
@@ -96,13 +99,16 @@ public class PassOne {
 	    		}
 	    		if(sp[1].contains("&")){
 		    		if(tabs == false){
-			    		mdt.write(sp[0] + " " + fvp.get(sp[1]) + "\n");
+			    		mdt.write(String.valueOf(line) + ":" + sp[0] + " " + fvp.get(sp[1]) + "\n");
+			    		line++;
 		    		}else{
-		    			mdt.write(sp[0] + "\t" + fvp.get(sp[1]) + "\n");
+		    			mdt.write(String.valueOf(line) + ":" + sp[0] + "\t" + fvp.get(sp[1]) + "\n");
+			    		line++;
 		    		}
 	    		}
 	    		else{
-	    			mdt.write(s + "\n");
+	    			mdt.write(String.valueOf(line) + ":" + s + "\n");
+	    			line++;
 	    		}
 	    	}
 	    	if(macro_started == false){

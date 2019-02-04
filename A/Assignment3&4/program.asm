@@ -17,4 +17,4 @@ LOAD	m
 ABC
 XYZ	3, 4
 XYZ	3, 4, 5
-MEND
+END
