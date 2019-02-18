@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="/home/TE/3160/SPOSL/A/Assignment1&amp;2/src/com/assembler/p1/MnemonicTable.java" key="org.eclipse.jdt.ui.lastuserlibrary"/>
+	<item value="560,714" key="UserLibraryLoadSaveDialog.size"/>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item value="2" key="layout"/>
 		<item value="true" key="group_libraries"/>
@@ -11,6 +13,9 @@
 		<item value="false" key="create_constructor"/>
 		<item value="true" key="create_unimplemented"/>
 	</section>
+	<section name="ClasspathContainerSelectionPage">
+		<item value="4" key="index"/>
+	</section>
 	<section name="OptionalMessageDialog.hide.">
 		<item value="true" key="org.eclipse.jdt.ui.typecomment.deprecated"/>
 	</section>
@@ -20,7 +25,7 @@
 	<section name="quick_assist_proposal_size">
 	</section>
 	<section name="BuildPathsPropertyPage">
-		<item value="3" key="pageIndex"/>
+		<item value="1" key="pageIndex"/>
 	</section>
 	<section name="completion_proposal_size">
 	</section>
