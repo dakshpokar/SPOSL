@@ -1,0 +1,11 @@
+LOAD	m
++LOAD	p
++ADD	q
++LOAD	3
++ADD	4
++LOAD	x
++ADD	3
++SUB	5
++MULT	y
++STORE	4
+END

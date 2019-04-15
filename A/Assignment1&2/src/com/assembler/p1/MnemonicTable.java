@@ -1,0 +1,39 @@
+package com.assembler.p1;
+
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class MnemonicTable {
+	public Map<String, ForIC> map = new HashMap<String, ForIC>();
+	
+	public MnemonicTable(){
+		map.put("STOP", new ForIC("00", "IS"));
+		map.put("ADD", new ForIC("01", "IS"));
+		map.put("SUB", new ForIC("02", "IS"));
+		map.put("MULT", new ForIC("03", "IS"));
+		map.put("MOVER", new ForIC("04", "IS"));
+		map.put("MOVEM", new ForIC("05", "IS"));
+		map.put("COMP", new ForIC("06", "IS"));
+		map.put("BC", new ForIC("07", "IS"));
+		map.put("DIV", new ForIC("08", "IS"));
+		map.put("READ", new ForIC("09", "IS"));
+		map.put("PRINT", new ForIC("10", "IS"));
+		
+		map.put("START", new ForIC("01", "AD"));
+		map.put("END", new ForIC("02", "AD"));
+		map.put("ORIGIN", new ForIC("03", "AD"));
+		map.put("EQU", new ForIC("04", "AD"));
+		map.put("LTORG", new ForIC("05", "AD"));
+
+		map.put("DS", new ForIC("01", "DL"));
+		map.put("DC", new ForIC("02", "DL"));
+		
+		
+		
+	}
+	public ForIC getMnemonic(String Instruction){
+		return map.get(Instruction);
+	}
+	
+}

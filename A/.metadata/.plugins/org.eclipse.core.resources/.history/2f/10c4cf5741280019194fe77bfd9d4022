@@ -1,0 +1,51 @@
+package com.macro.p2;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import com.assembler.p1.MnemonicTable;
+
+public class PassTwo {
+	private Map<String, Integer> mnt = new HashMap<String, Integer>();
+	private Map<Integer, String> mdt = new HashMap<Integer, String>();
+	public static void main(String[] args) throws IOException {
+		Scanner scan = new Scanner(System.in);
+		PassTwo p2 = new PassTwo();
+		p2.readFiles();
+	}
+	public void readFiles() throws IOException{
+		BufferedReader mdtable = new BufferedReader(new FileReader("mdt"));
+	    BufferedReader mntable = new BufferedReader(new FileReader("mnt"));
+	    BufferedReader inter = new BufferedReader(new FileReader("intercode"));
+	    BufferedWriter target = new BufferedWriter(new FileWriter("target"));
+	    MnemonicTable m = new MnemonicTable();
+	    String s = null;
+	    
+	    //Reading MNT
+	    while ((s = mntable.readLine()) != null) {
+	    	String[] sp = s.split("\t");
+	    	mnt.put(sp[0] + sp[1], Integer.parseInt(sp[2]));
+	    }
+	    //Reading MDT
+	    while ((s = mdtable.readLine()) != null) {
+	    	String[] sp = s.split(":");
+	    	mdt.put(Integer.parseInt(sp[0]), sp[1]);
+	    }
+	    int params = 0;
+	    //Reading intercode
+	    while ((s = inter.readLine()) != null) {
+	    	String[] sp = s.split("\t");
+	    	if(s.contains("LOAD") || m.map.containsKey(sp[0])){
+	    		target.write(s + "\n");
+	    	}
+	    }
+	    target.close();
+	    
+	}
+}

@@ -1,0 +1,26 @@
+*********MNT************
+Name    Address
+INCR    0
+DECR    5
+*********ALA************
+No    Argument
+0    &X
+1    &Y
+2    &REG1
+3    &A
+4    &B
+5    &REG2
+*********MDT************
+
+Address        Describtion
+0    INCR &X,&Y,&REG1=AREG
+1    MOVER    #2  #0
+2    ADD    #2  #1
+3    MOVEM    #2  #0
+4    MEND
+5    DECR &A,&B,&REG2=BREG
+6    MOVER    #5  #3
+7    SUB    #5  #4
+8    MOVEM    #5  #3
+9    MEND
+

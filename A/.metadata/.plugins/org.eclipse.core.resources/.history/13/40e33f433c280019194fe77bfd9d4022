@@ -1,0 +1,21 @@
+package com.macro.p2;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+import com.macro.p1.PassOne;
+
+public class PassTwo {
+	public static void main(String[] args) throws IOException {
+		Scanner scan = new Scanner(System.in);
+		PassTwo p2 = new PassTwo();
+		p2.readFile();
+	}
+	public void readFile(){
+		BufferedWriter mdt = new BufferedWriter(new FileWriter("mdt"));
+	    BufferedWriter mnt = new BufferedWriter(new FileWriter("mnt"));
+	    BufferedWriter inter = new BufferedWriter(new FileWriter("intercode"));
+	}
+}

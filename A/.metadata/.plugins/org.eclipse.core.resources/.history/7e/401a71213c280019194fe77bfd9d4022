@@ -1,0 +1,17 @@
+package com.macro.p2;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+import com.macro.p1.PassOne;
+
+public class PassTwo {
+	public static void main(String[] args) throws IOException {
+		Scanner scan = new Scanner(System.in);
+		PassTwo p2 = new PassTwo();
+		System.out.println("Enter the name of file with extension: ");
+		//String fileName = scan.next();
+		p1.getFileName("program.asm");
+		p1.readFile();
+	}
+}
