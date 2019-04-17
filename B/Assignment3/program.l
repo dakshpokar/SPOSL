@@ -5,14 +5,13 @@ unsigned charcount=0;
 unsigned wordcount=0, linecount=0;
 %}
 
-delim [ \n\t]
+delim [^ \n\t]
 ws {delim}+
 
 %%
 
 \n	{	linecount++; }
-{ws}	{	wordcount++; }
-.	{	charcount++;	}
+{ws}	{	wordcount++; charcount+=yyleng;}
 
 %%
 int yywrap(){
