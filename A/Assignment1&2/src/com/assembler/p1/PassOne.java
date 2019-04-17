@@ -25,11 +25,14 @@ public class PassOne {
 	public static void main(String[] args) {
 		scan = new Scanner(System.in);
 		PassOne p1 = new PassOne();
+		/*
+		 * Taking File Name
+		 */
 		System.out.println("Enter the name of file with extension: ");
 		String fileName = scan.next();
-		p1.getFileName(fileName);
+		p1.getFileName(fileName);		//Setting class object filename with user inputted filename
 		try {
-			p1.readFile();
+			p1.readFile();	//Scanning the file input.
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -38,8 +41,8 @@ public class PassOne {
 		this.fileName = fileName;
 	}
 	public void readFile() throws IOException{
-		MnemonicTable m = new MnemonicTable();
-		BufferedReader br = null;
+		MnemonicTable m = new MnemonicTable();	//MT object
+		BufferedReader br = null;	//Reading file
 		String tempS = "";
 		Integer lit_count = 1;
 		Boolean ltorg = false;
@@ -65,7 +68,7 @@ public class PassOne {
 		        	}
         			if(s.contains("LTORG") || s.contains("END")){
     					pooltab.add("#" + lit_count.toString() + "\n");
-        				ltorg = true;
+        				ltorg = true;	//If END of LTORG 
         				continue;
         			}
         			

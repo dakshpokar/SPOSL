@@ -28,9 +28,6 @@ public class MnemonicTable {
 
 		map.put("DS", new ForIC("01", "DL"));
 		map.put("DC", new ForIC("02", "DL"));
-		
-		
-		
 	}
 	public ForIC getMnemonic(String Instruction){
 		return map.get(Instruction);

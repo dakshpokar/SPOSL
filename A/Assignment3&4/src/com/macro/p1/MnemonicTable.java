@@ -1,11 +1,11 @@
-package com.assembler.p1;
+package com.macro.p1;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class MnemonicTable {
-	private Map<String, ForIC> map = new HashMap<String, ForIC>();
+	public Map<String, ForIC> map = new HashMap<String, ForIC>();
 	
 	public MnemonicTable(){
 		map.put("STOP", new ForIC("00", "IS"));
@@ -28,9 +28,6 @@ public class MnemonicTable {
 
 		map.put("DS", new ForIC("01", "DL"));
 		map.put("DC", new ForIC("02", "DL"));
-		
-		
-		
 	}
 	public ForIC getMnemonic(String Instruction){
 		return map.get(Instruction);

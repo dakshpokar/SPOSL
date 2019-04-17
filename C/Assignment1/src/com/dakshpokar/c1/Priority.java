@@ -58,6 +58,7 @@ public class Priority {
 		p_list.add(p);
 
 	}
+	@SuppressWarnings("unchecked")
 	private void showAllProcesses(){
 		GanttChart gantt = new GanttChart();
 		Iterator iterator = p_list.iterator();

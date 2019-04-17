@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import com.assembler.p1.MnemonicTable;
+import com.macro.p1.MnemonicTable;
 
 public class PassTwo {
 	private Map<String, Integer> mnt = new HashMap<String, Integer>();

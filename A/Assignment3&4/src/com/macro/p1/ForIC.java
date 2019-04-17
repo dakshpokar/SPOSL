@@ -1,4 +1,4 @@
-package com.assembler.p1;
+package com.macro.p1;
 
 public class ForIC {
 	private String code;

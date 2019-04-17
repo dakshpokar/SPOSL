@@ -22,25 +22,31 @@ public class Bankers {
 		System.out.println("Enter the number of resources: ");
 		r = scan.nextInt();
 		
+		
 		total_avail = new ArrayList<>();
-		System.out.println("Enter the total number of available resources: ");
+		System.out.println("Enter the total number of available maximum resources: ");
 		for(int i = 0; i<r;i++) {
 			System.out.print("Enter amount for resource " + String.valueOf(i) + ": ");
 			tem = scan.nextInt();
 			total_avail.add(tem);
 		}
-		System.out.println("Enter the allocation matrix: ");
+		
+		
 		/*
 		 * Initialization of Matrices
 		 */
+		 
 		allocated = new ArrayList<ArrayList<Integer>>();	//Initialize Allocated Matrix
 		need = new ArrayList<ArrayList<Integer>>();	//Initialize Need Matrix
 		temp = new ArrayList<>();
+		
 		/*
 		 * Getting all input matrices from user
 		 */
+		 
+		 System.out.println("Enter the allocation matrix: ");
 		for(int i = 0; i<p;i++) {
-			temp.clear();
+			temp = new ArrayList<>();
 			for(int j = 0;j<r;j++) {
 				System.out.print("Enter " + String.valueOf(i) + ", " + String.valueOf(j) + ": ");
 				tem = scan.nextInt();
@@ -49,17 +55,21 @@ public class Bankers {
 			}
 			allocated.add(temp);
 		}
+		
 		/*
 		 * Finding the remaining resources available
 		 */
+		 
 		for(int i = 0;i<r;i++) {
 			pre_avail.set(i, total_avail.get(i) - pre_avail.get(i)); //pre_avail[i] has sum of allocated resources
 		}
+		
 		/*
 		 * Getting need matrix input from user;
 		 */
+		 
 		for(int i = 0; i<p;i++) {
-			temp.clear();
+			temp = new ArrayList<>();
 			for(int j = 0;j<r;j++) {
 				System.out.print("Enter " + String.valueOf(i) + ", " + String.valueOf(j) + ": ");
 				tem = scan.nextInt();
@@ -81,8 +91,8 @@ public class Bankers {
 		total_avail.add(7);
 		total_avail.add(7);
 		total_avail.add(10);
-		pre_avail.add(1);
-		pre_avail.add(1);
+		pre_avail.add(2);
+		pre_avail.add(3);
 		pre_avail.add(0);
 		
 		
