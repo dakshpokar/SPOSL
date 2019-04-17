@@ -1,5 +1,0 @@
-package com.dakshpokar.c1;
-
-public class PriorityComparator implements Comparator{
-
-}

@@ -1,5 +1,0 @@
-package com.dakshpokar.c1;
-
-public class ProcessList {
-	ArrayList<Process> processes;
-}
