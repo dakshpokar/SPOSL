@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+public class macroPass1 {
+	Scanner scan;
+	public void getInput() {
+		scan = new Scanner(System.in);
+		String filename = scan.next();
+		fileRead(filename);
+	}
+	public void fileRead(String x) {
+		
+	}
+}

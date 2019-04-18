@@ -1,0 +1,15 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.Scanner;
+
+public class macroPass1 {
+	Scanner scan;
+	public void getInput() {
+		scan = new Scanner(System.in);
+		String filename = scan.next();
+		fileRead(filename);
+	}
+	public void fileRead(String x) {
+		BufferedReader br = new BufferedReader(new FileReader(x));
+	}
+}

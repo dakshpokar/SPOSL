@@ -1,0 +1,21 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.HashMap;
+
+public class MnemonicTable {
+	private HashMap<String, ICLine> optab;
+	MnemonicTable(){
+		optab = new HashMap<>();
+		BufferedReader br;
+		try {
+			 br = new BufferedReader(new FileReader("optab.txt"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	public ICLine getInstruction(String instruction) {
+		return optab.get(instruction);		
+	}
+}

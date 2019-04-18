@@ -1,0 +1,14 @@
+
+public class ICLine {
+	private String code;
+	private String type;
+	public ICLine() {
+		// TODO Auto-generated constructor stub
+	}
+	public ICLine(String code, String type) {
+		super();
+		this.code = code;
+		this.type = type;
+	}
+	
+}

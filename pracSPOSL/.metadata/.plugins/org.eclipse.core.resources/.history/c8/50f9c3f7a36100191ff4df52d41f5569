@@ -1,0 +1,139 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+public class passOne {
+	public void getFileName() throws IOException {
+		String fileName = "program.asm";
+		parseFile(fileName);
+	}
+	@SuppressWarnings("unchecked")
+	public void parseFile(String file) throws IOException {
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		BufferedWriter inter = new BufferedWriter(new FileWriter("inter"));
+		BufferedWriter symtab = new BufferedWriter(new FileWriter("symtab"));
+		BufferedWriter littab = new BufferedWriter(new FileWriter("littab"));
+		BufferedWriter pooltab = new BufferedWriter(new FileWriter("pooltab"));
+		HashMap<String, ArrayList<String>> symbolTable = new HashMap<String, ArrayList<String>>();
+		HashMap<Integer, ArrayList<String>> literalTable = new HashMap<Integer, ArrayList<String>>();
+		HashMap<Integer, Integer> poolTable = new HashMap<Integer, Integer>();
+		
+		MnemonicTable mn = new MnemonicTable();
+		String s = "";
+		String[] str;
+		Integer lc = 0, symbolID = 0, x=0, literalID = 0, processPool = 0;
+		boolean ltorg = false;
+		ICLine inst;
+		ArrayList<String> list = new ArrayList<>();
+		while((s=br.readLine())!=null) {
+			str = s.split("\\s+");
+			if(s.contains("START")) {
+				lc = Integer.parseInt(str[1]);
+				inst = mn.getInstruction(str[0]);
+				inter.write("\t" + "(" + inst.getType() + ", " + inst.getCode() + ")");
+				inter.write("\t" + "(" + "C, " + String.valueOf(lc) + ")" + "\n");
+				continue;
+			}
+			
+			if(s.contains("LTORG") || s.contains("END")) {
+				ltorg = true;
+				x = poolTable.get(processPool);
+				processPool++;
+			}
+			if(ltorg == true) {
+				for(int i = x;i<literalTable.size();i++) {
+					literalTable.get(i).add(String.valueOf(lc));	//Address assignment
+					inter.write("\t" + "(DL, 02)" + "\t" + "(C, "+ literalTable.get(i).get(0).substring(2, 3) + ")" + "\n");	//Adding to intermediate code
+					lc++;
+				}
+				ltorg = false;
+				continue;
+			}
+			if(mn.getInstruction(str[0]) == null) {
+				list = new ArrayList<>();
+				list.add(String.valueOf(symbolID));	//list[0] == id
+				list.add(String.valueOf(lc));	//list[1] == address
+				symbolID++;
+				symbolTable.put(str[0], list);
+				x = 1;	//Has Symbol so instruction @ str[1]
+			}
+			else {
+				x = 0;	//Not having symbol
+			}
+			if(s.contains("STOP")) {
+				continue;
+			}
+			else {
+				inst = mn.getInstruction(str[x]);
+				inter.write(String.valueOf(lc));
+				inter.write("\t" + "(" + inst.getType() + ", " + inst.getCode() + ")");
+				//Processing operand
+				if(str.length>1) {
+					if(str[x+1].contains(",")) {
+						String[] splt = str[x+1].split(",");
+						inst = mn.getInstruction(splt[0]);
+						inter.write("\t" + "(" + inst.getType() + ", " + inst.getCode() + ")");
+						
+						//splt[1] can be symbol or literal
+						if(splt[1].contains("=")) {
+							list = new ArrayList<>();
+							list.add(splt[1]);	//literal list[0]
+							literalTable.put(literalID, list);
+							if(poolTable.get(processPool) == null) {
+								poolTable.put(processPool, literalID);
+							}
+							inter.write("\t" + "(" + "L, " + literalID + ")" + "\n");
+							literalID++;
+
+						}
+						else {
+							if(symbolTable.get(splt[1]) == null || symbolTable.get(splt[1]).size() == 0) {	//Forward Reference
+								list = new ArrayList<>();
+								list.add(String.valueOf(symbolID));
+								symbolID++;
+								symbolTable.put(splt[1], list); //Backpatching need 
+								inter.write("\t" + "(" + "S, " + list.get(0) + ")" + "\n");
+
+							}
+							else {
+								list = symbolTable.get(splt[1]);
+								inter.write("\t" + "(" + "S, " + list.get(0) + ")" + "\n");
+							}
+						}
+					}
+				}
+				else {
+					inter.write("\n");
+				}
+			}
+			lc++;
+		}
+		
+		Iterator hm = symbolTable.entrySet().iterator();
+		while(hm.hasNext()) {
+			Map.Entry mapElement = (Map.Entry)hm.next();
+			list = (ArrayList<String>)mapElement.getValue();
+			symtab.write(mapElement.getKey() + "\t" + list.get(0) +"\t" + list.get(1) + "\n");
+		}
+		
+		inter.close();
+		littab.close();
+		pooltab.close();
+		symtab.close();
+	}
+	public static void main(String[] args) {
+		passOne p1 = new passOne();
+		try {
+			p1.getFileName();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

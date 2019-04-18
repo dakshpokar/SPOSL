@@ -5784,3 +5784,100 @@ New file: /home/dakshpokar/.eclipse/360744294_linux_gtk_x86_64/configuration/org
 	at org.eclipse.ui.internal.decorators.DecorationScheduler$1.ensureResultCached(DecorationScheduler.java:350)
 	at org.eclipse.ui.internal.decorators.DecorationScheduler$1.run(DecorationScheduler.java:313)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2019-04-17 21:53:11.612 -----------------------------------------------
+eclipse.buildId=4.11.0.I20190307-0500
+java.version=11.0.2
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.core 1 0 2019-04-17 21:53:23.916
+!MESSAGE Using Apache MINA sshd as ssh client.
+
+!ENTRY org.brainwy.liclipsetext.shared_core 1 1 2019-04-17 21:54:57.912
+!MESSAGE Warning: overriding default language definition for file extension: inc
+Old file: text.html.basic - Zip: /home/dakshpokar/.eclipse/360744294_linux_gtk_x86_64/configuration/org.eclipse.osgi/473/0/.cp/languages/html.tmbundle/html.tmbundle-master/Syntaxes/HTML.plist
+New file: /home/dakshpokar/.eclipse/360744294_linux_gtk_x86_64/configuration/org.eclipse.osgi/473/0/.cp/languages/dxl.liclipse
+!STACK 0
+java.lang.RuntimeException: Warning: overriding default language definition for file extension: inc
+Old file: text.html.basic - Zip: /home/dakshpokar/.eclipse/360744294_linux_gtk_x86_64/configuration/org.eclipse.osgi/473/0/.cp/languages/html.tmbundle/html.tmbundle-master/Syntaxes/HTML.plist
+New file: /home/dakshpokar/.eclipse/360744294_linux_gtk_x86_64/configuration/org.eclipse.osgi/473/0/.cp/languages/dxl.liclipse
+	at org.brainwy.liclipsetext.shared_core.log.Log.logInfo(Log.java:52)
+	at org.brainwy.liclipsetext.editor.languages.LanguagesManager.fill(LanguagesManager.java:527)
+	at org.brainwy.liclipsetext.editor.languages.LanguagesManager.registerFileExtensions(LanguagesManager.java:492)
+	at org.brainwy.liclipsetext.editor.languages.LanguagesManager.loadFile(LanguagesManager.java:471)
+	at org.brainwy.liclipsetext.editor.languages.LanguagesManager.reloadAll(LanguagesManager.java:279)
+	at org.brainwy.liclipsetext.editor.languages.LanguagesManager.<init>(LanguagesManager.java:138)
+	at org.brainwy.liclipsetext.editor.LiClipseTextEditorPlugin.getLanguagesManager(LiClipseTextEditorPlugin.java:195)
+	at org.brainwy.liclipsetext.editor.LiClipseEditorOverride.overrideDefaultEditor(LiClipseEditorOverride.java:66)
+	at org.eclipse.ui.ide.IDE.overrideDefaultEditorAssociation(IDE.java:897)
+	at org.eclipse.ui.ide.IDE.getDefaultEditor(IDE.java:1601)
+	at org.eclipse.ui.ide.IDE.getDefaultEditor(IDE.java:1552)
+	at org.eclipse.ui.internal.ide.ContentTypeDecorator.decorate(ContentTypeDecorator.java:55)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorDefinition.decorate(LightweightDecoratorDefinition.java:261)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager$LightweightRunnable.run(LightweightDecoratorManager.java:107)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager.decorate(LightweightDecoratorManager.java:380)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager.getDecorations(LightweightDecoratorManager.java:362)
+	at org.eclipse.ui.internal.decorators.DecorationScheduler$1.ensureResultCached(DecorationScheduler.java:350)
+	at org.eclipse.ui.internal.decorators.DecorationScheduler$1.run(DecorationScheduler.java:313)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.brainwy.liclipsetext.shared_core 1 1 2019-04-17 21:54:58.259
+!MESSAGE Warning: overriding default language definition for file extension: html
+Old file: text.html.basic - Zip: /home/dakshpokar/.eclipse/360744294_linux_gtk_x86_64/configuration/org.eclipse.osgi/473/0/.cp/languages/html.tmbundle/html.tmbundle-master/Syntaxes/HTML.plist
+New file: /home/dakshpokar/.eclipse/360744294_linux_gtk_x86_64/configuration/org.eclipse.osgi/473/0/.cp/languages/html.liclipse
+!STACK 0
+java.lang.RuntimeException: Warning: overriding default language definition for file extension: html
+Old file: text.html.basic - Zip: /home/dakshpokar/.eclipse/360744294_linux_gtk_x86_64/configuration/org.eclipse.osgi/473/0/.cp/languages/html.tmbundle/html.tmbundle-master/Syntaxes/HTML.plist
+New file: /home/dakshpokar/.eclipse/360744294_linux_gtk_x86_64/configuration/org.eclipse.osgi/473/0/.cp/languages/html.liclipse
+	at org.brainwy.liclipsetext.shared_core.log.Log.logInfo(Log.java:52)
+	at org.brainwy.liclipsetext.editor.languages.LanguagesManager.fill(LanguagesManager.java:527)
+	at org.brainwy.liclipsetext.editor.languages.LanguagesManager.registerFileExtensions(LanguagesManager.java:492)
+	at org.brainwy.liclipsetext.editor.languages.LanguagesManager.loadFile(LanguagesManager.java:471)
+	at org.brainwy.liclipsetext.editor.languages.LanguagesManager.reloadAll(LanguagesManager.java:279)
+	at org.brainwy.liclipsetext.editor.languages.LanguagesManager.<init>(LanguagesManager.java:138)
+	at org.brainwy.liclipsetext.editor.LiClipseTextEditorPlugin.getLanguagesManager(LiClipseTextEditorPlugin.java:195)
+	at org.brainwy.liclipsetext.editor.LiClipseEditorOverride.overrideDefaultEditor(LiClipseEditorOverride.java:66)
+	at org.eclipse.ui.ide.IDE.overrideDefaultEditorAssociation(IDE.java:897)
+	at org.eclipse.ui.ide.IDE.getDefaultEditor(IDE.java:1601)
+	at org.eclipse.ui.ide.IDE.getDefaultEditor(IDE.java:1552)
+	at org.eclipse.ui.internal.ide.ContentTypeDecorator.decorate(ContentTypeDecorator.java:55)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorDefinition.decorate(LightweightDecoratorDefinition.java:261)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager$LightweightRunnable.run(LightweightDecoratorManager.java:107)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager.decorate(LightweightDecoratorManager.java:380)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager.getDecorations(LightweightDecoratorManager.java:362)
+	at org.eclipse.ui.internal.decorators.DecorationScheduler$1.ensureResultCached(DecorationScheduler.java:350)
+	at org.eclipse.ui.internal.decorators.DecorationScheduler$1.run(DecorationScheduler.java:313)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.brainwy.liclipsetext.shared_core 1 1 2019-04-17 21:54:58.260
+!MESSAGE Warning: overriding default language definition for file extension: htm
+Old file: text.html.basic - Zip: /home/dakshpokar/.eclipse/360744294_linux_gtk_x86_64/configuration/org.eclipse.osgi/473/0/.cp/languages/html.tmbundle/html.tmbundle-master/Syntaxes/HTML.plist
+New file: /home/dakshpokar/.eclipse/360744294_linux_gtk_x86_64/configuration/org.eclipse.osgi/473/0/.cp/languages/html.liclipse
+!STACK 0
+java.lang.RuntimeException: Warning: overriding default language definition for file extension: htm
+Old file: text.html.basic - Zip: /home/dakshpokar/.eclipse/360744294_linux_gtk_x86_64/configuration/org.eclipse.osgi/473/0/.cp/languages/html.tmbundle/html.tmbundle-master/Syntaxes/HTML.plist
+New file: /home/dakshpokar/.eclipse/360744294_linux_gtk_x86_64/configuration/org.eclipse.osgi/473/0/.cp/languages/html.liclipse
+	at org.brainwy.liclipsetext.shared_core.log.Log.logInfo(Log.java:52)
+	at org.brainwy.liclipsetext.editor.languages.LanguagesManager.fill(LanguagesManager.java:527)
+	at org.brainwy.liclipsetext.editor.languages.LanguagesManager.registerFileExtensions(LanguagesManager.java:492)
+	at org.brainwy.liclipsetext.editor.languages.LanguagesManager.loadFile(LanguagesManager.java:471)
+	at org.brainwy.liclipsetext.editor.languages.LanguagesManager.reloadAll(LanguagesManager.java:279)
+	at org.brainwy.liclipsetext.editor.languages.LanguagesManager.<init>(LanguagesManager.java:138)
+	at org.brainwy.liclipsetext.editor.LiClipseTextEditorPlugin.getLanguagesManager(LiClipseTextEditorPlugin.java:195)
+	at org.brainwy.liclipsetext.editor.LiClipseEditorOverride.overrideDefaultEditor(LiClipseEditorOverride.java:66)
+	at org.eclipse.ui.ide.IDE.overrideDefaultEditorAssociation(IDE.java:897)
+	at org.eclipse.ui.ide.IDE.getDefaultEditor(IDE.java:1601)
+	at org.eclipse.ui.ide.IDE.getDefaultEditor(IDE.java:1552)
+	at org.eclipse.ui.internal.ide.ContentTypeDecorator.decorate(ContentTypeDecorator.java:55)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorDefinition.decorate(LightweightDecoratorDefinition.java:261)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager$LightweightRunnable.run(LightweightDecoratorManager.java:107)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager.decorate(LightweightDecoratorManager.java:380)
+	at org.eclipse.ui.internal.decorators.LightweightDecoratorManager.getDecorations(LightweightDecoratorManager.java:362)
+	at org.eclipse.ui.internal.decorators.DecorationScheduler$1.ensureResultCached(DecorationScheduler.java:350)
+	at org.eclipse.ui.internal.decorators.DecorationScheduler$1.run(DecorationScheduler.java:313)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)

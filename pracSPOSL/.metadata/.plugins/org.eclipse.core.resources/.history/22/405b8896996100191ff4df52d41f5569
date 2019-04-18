@@ -1,0 +1,11 @@
+import java.util.HashMap;
+
+public class MnemonicTable {
+	private HashMap<String, ICLine> optab;
+	MnemonicTable(){
+		optab = new HashMap<>();
+	}
+	public ICLine getInstruction(String instruction) {
+		ICLine ic = new ICLine;
+	}
+}

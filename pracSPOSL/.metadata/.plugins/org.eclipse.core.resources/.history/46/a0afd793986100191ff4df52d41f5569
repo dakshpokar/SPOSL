@@ -1,0 +1,7 @@
+
+public class passOne {
+	public void getFileName() {
+		String fileName = "program.asm";
+		parseFile(fileName);
+	}
+}

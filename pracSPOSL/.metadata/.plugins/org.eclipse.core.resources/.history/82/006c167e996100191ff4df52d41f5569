@@ -1,0 +1,8 @@
+import java.util.HashMap;
+
+public class MnemonicTable {
+	private HashMap<String, ICLine> optab;
+	MnemonicTable(){
+		
+	}
+}

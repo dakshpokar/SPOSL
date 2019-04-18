@@ -1,0 +1,15 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.HashMap;
+
+public class MnemonicTable {
+	private HashMap<String, ICLine> optab;
+	MnemonicTable(){
+		optab = new HashMap<>();
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		
+	}
+	public ICLine getInstruction(String instruction) {
+		return optab.get(instruction);		
+	}
+}

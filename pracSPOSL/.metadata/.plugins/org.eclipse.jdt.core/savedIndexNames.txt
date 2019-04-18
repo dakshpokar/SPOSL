@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+/home/dakshpokar/pracSPOSL/.metadata/.plugins/org.eclipse.jdt.core
+1961666225.index
+2598553501.index

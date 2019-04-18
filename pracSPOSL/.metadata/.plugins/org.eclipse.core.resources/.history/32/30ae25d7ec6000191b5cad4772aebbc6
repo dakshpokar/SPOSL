@@ -1,0 +1,17 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Scanner;
+
+public class macroPass1 {
+	Scanner scan;
+	public void getInput() throws FileNotFoundException {
+		scan = new Scanner(System.in);
+		String filename = scan.next();
+		fileRead(filename);
+	}
+	public void fileRead(String x) throws FileNotFoundException {
+		BufferedReader br = new BufferedReader(new FileReader(x));
+		while()
+	}
+}

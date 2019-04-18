@@ -1,0 +1,13 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+public class passOne {
+	public void getFileName() throws FileNotFoundException {
+		String fileName = "program.asm";
+		parseFile(fileName);
+	}
+	public void parseFile(String file) throws FileNotFoundException {
+		BufferedReader br = new BufferedReader(new FileReader(file));
+	}
+}
