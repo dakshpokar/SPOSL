@@ -5,12 +5,15 @@ import java.util.Scanner;
 public class SJF {
 	private ArrayList<Process> processes;
 	private ArrayList<Process> rQ;
-	Process pro;
+	Process pro, recent_temp;
+	Double time = 0.0, recent = 0.0;
+	
 	Integer numProcess = 0, quantum = 0;
 	@SuppressWarnings("unchecked")
 	public void getInput() {
 		processes = new ArrayList<>();
 		rQ = new ArrayList<>();
+		recent_temp = new Process();
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter the number of processes: ");
@@ -20,14 +23,18 @@ public class SJF {
 			pro.get(i);
 			processes.add(pro);
 		}
-		//Collections.sort(processes, new ArrivalComparator());
+		System.out.println(time);
+		System.out.println(recent_temp.getArrivalTime());
+		Collections.sort(processes, new ArrivalComparator());
+		
+		time = time + processes.get(0).getArrivalTime();
 		rQ.add(processes.get(0));
 		
 		schedule();
 	}
 	public void schedule() {
-		Double time = 0.0;
 		Process temp;
+		
 		while(!rQ.isEmpty()) {
 			for(int i = 0; i<processes.size();i++) {
 				if(time>=processes.get(i).getArrivalTime() && processes.get(i).getCompletionTime()==-1 && !rQ.contains(processes.get(i))) {
