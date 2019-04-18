@@ -1,0 +1,11 @@
+#define CONJUNCTION 257
+#define VERB 258
+#define ADVERB 259
+#define ADJECTIVE 260
+#define PREPOSITION 261
+#define FULLSTOP 262
+#define COMMA 263
+#define INVERTEDCOMMA 264
+#define NOUN 265
+#define PRONOUN 266
+#define QUESTIONMARK 267

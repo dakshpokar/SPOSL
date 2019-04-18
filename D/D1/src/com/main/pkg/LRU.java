@@ -74,7 +74,7 @@ public class LRU {
 		/*
 		 * For testing purpose
 		 */
-		int[] elements = {2, 3, 2, 1, 5, 2, 4, 5, 3, 2, 5, 2};
+		int[] elements = {2,3,2,1,5,2,4,5,3,2,5,2};
 		for(int i = 0; i < elements.length;i ++) {
 			rs.add(elements[i]);
 		}
