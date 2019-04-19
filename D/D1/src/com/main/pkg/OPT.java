@@ -116,7 +116,7 @@ public class OPT {
 		/*
 		 * For runtime process
 		 */
-		/*
+		
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter the capacity of Main Memory/RAM: ");
 		capacity = scan.nextInt();
@@ -128,16 +128,18 @@ public class OPT {
 			x = scan.nextInt();
 			rs.add(x);
 		}
-		*/
+		
 		
 		/*
 		 * For testing purpose
 		 */
+		/*
 		int[] elements = {2, 3, 2, 1, 5, 2, 4, 5, 3, 2, 5, 2};
 		for(int i = 0; i < elements.length;i ++) {
 			rs.add(elements[i]);
 		}
 		capacity = 3;
+		*/
 		opt.getIterations(rs, capacity);
 	}
 }
